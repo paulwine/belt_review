@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Add Book</title>
+</head>
+<body>
+    <h1>Add Book</h1>
+    <form action="/process" method ="post">
+        <p>Tile: <input type="text"name = "title"></p>
+        <p>Review: <textarea type="text"name = "title"></textarea></p>
+        <p><select name="rating">
+                <option name="1" value="1">1</option>
+                <option name="2" value="2">2</option>
+                <option name="3" value="3">3</option>
+                <option name="4" value="4">4</option>
+                <option name="5" value="5">5</option>
+            </select>
+        </p>
+        <input type="submit" value="Add Book and Review">
+    </form>
+</body>
+</html>

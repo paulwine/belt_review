@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Books</title>
+</head>
+<body>
+    <h2>Whaddup {{name}}</h2>
+    <a href="/add_book">Add Book and Review</a>
+    <h3>Recent Book Reviews:</h3>
+    
+        {% for review in book_reviews %}
+            <div class = "recent_review">
+                <a href="/review/{{review.id}}">{{review.title}}</a>
+                <p>{{review.rating}}</p>
+            </div>
+        {% endfor %}
+</body>
+</html>

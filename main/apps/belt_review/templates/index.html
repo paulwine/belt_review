@@ -6,9 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>User Page:</title>
+    <title>Login/Registration: </title>
 </head>
 <body>
-    <h1>Ay</h1>
+    <h1>Register</h1>
+    <form action = "/new_user" method = "post">
+        {% csrf_token %}
+        <p>Name: <input type="text" name ="name"></p>
+       <p>Alias: <input type="text" name ="alias"></p>
+       <p>Email: <input type="text" name ="email"></p>
+        <p>Password: <input type="text" name ="password"></p>
+        <p>Confirm Password: <input type="text" name ="confirm"></p>
+        <p><input type="submit" value="Create User"></p>
+    </form>
+    <h1>Login</h1>
+    <form action = "/login" method ="post">
+        {% csrf_token %}
+        <p>Email: <input type="text" name ="email"></p>
+        <p>Password: <input type="text" name ="password"></p>
+        <input type="submit" value="login">
+    </form>
+    {% for message in messages %}
+        <p class="red">{{message}}</p>
+    {% endfor %}
 </body>
 </html>
