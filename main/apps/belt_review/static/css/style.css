@@ -4,3 +4,17 @@ h1{
 .red{
     color: red;
 }
+.star{
+    width: 20px;
+}
+.recent_review{
+    border: 1px solid black;
+   
+}
+.reviews{
+    width: 20%;
+    display: inline-block;
+}
+.footer{
+    display: block;
+}

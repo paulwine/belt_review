@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^logout$', views.logout),
     url(r'^add_book$', views.add_book),
     url(r'^review/(?P<review_id>\d+)$', views.review),
-    url(r'^process$', views.process)
+    url(r'^process$', views.process),
+    url(r'^dump_books$', views.dump_books)
 
 ]

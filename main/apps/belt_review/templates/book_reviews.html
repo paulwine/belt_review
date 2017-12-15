@@ -10,5 +10,17 @@
 </head>
 <body>
     <h1>Book Reviews</h1>
+        <h2>{{title}}</h2>
+        <p>{{review}}</p>
+        <p>Rating:
+            {% for star in stars %}
+                <img class ="star" src="{% static '/images/full.png' %}" alt="full">
+            {% endfor %}
+            {% for star in blank_stars %}
+                <img class ="star" src="{% static '/images/blank.png' %}" alt="blank">
+            {% endfor %}
+           
+        </p>
+        <a href="/books">Go Back</a>
 </body>
 </html>

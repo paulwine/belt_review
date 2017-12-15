@@ -49,7 +49,8 @@ def new_user(request):
             "confirm" : confirm
         }
         User.objects.create(name=name,alias=alias, email=email, password=password)
-        
+        active_user = User.objects.filter(email=email)
+        request.session["active_id"] = active_user[0].id
         return redirect("/books")
     else:
         return redirect("/")
@@ -85,6 +86,8 @@ def login(request):
            
         }
         print "hey"
+        active_user = User.objects.filter(email=email)
+        request.session["active_id"] = active_user[0].id
         return redirect("/books")
 
 def books(request):
@@ -93,8 +96,8 @@ def books(request):
     all_reviews = Review.objects.all()
     context["all_users"] = all_users
     context["all_reviews"] = all_reviews
-    print all_users
-    all
+    context["rating"] = [1, 2, 3, 4, 5] 
+
     return render(request, "books.html", context)
 
 def dump_users(request):
@@ -111,17 +114,39 @@ def review(request, review_id):
     title = book[0].title
     review = book[0].review
     rating = book[0].rating
+    neg_rating = 5 - rating
+    stars = []
+    blank_stars = []
+    for i in range(0, rating):
+        stars.append("*")
+    for i in range(0, neg_rating):
+        blank_stars.append("*")
 
     context = {
         "title" : title,
         "review" : review,
         "rating" : rating,
-        "id" : review_id
+        "id" : review_id,
+        "stars" : stars,
+        "blank_stars" : blank_stars
     }
+
     return render(request, "book_reviews.html", context)
-def add_book(request, review_id):
+def add_book(request):
     
-    return render(request, "book_reviews.html", context)
+    return render(request, "add_book.html")
 def process(request):
-    
+    title= request.POST["title"]
+    author= request.POST["author"]
+    review= request.POST["review"]
+    rating = request.POST["rating"]
+    active_id = request.session["active_id"]
+    cur_user = User.objects.filter(id = active_id)
+    a = Review.objects.create(title=title, author=author, review=review, rating=rating)
+    a.book_reviewers = cur_user
+    return redirect("/books")
+
+def dump_books(request):
+    Review.objects.all().delete()
+    return redirect("/books")
 # Create your views here.

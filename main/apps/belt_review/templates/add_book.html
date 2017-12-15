@@ -11,8 +11,10 @@
 <body>
     <h1>Add Book</h1>
     <form action="/process" method ="post">
-        <p>Tile: <input type="text"name = "title"></p>
-        <p>Review: <textarea type="text"name = "title"></textarea></p>
+        {% csrf_token %}
+        <p>Title: <input type="text" name = "title"></p>
+        <p>Author: <input type="text" name = "author"></p>
+        <p>Review: <textarea type="text" name = "review"></textarea></p>
         <p><select name="rating">
                 <option name="1" value="1">1</option>
                 <option name="2" value="2">2</option>

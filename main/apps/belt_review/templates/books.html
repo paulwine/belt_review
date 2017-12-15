@@ -10,14 +10,36 @@
 </head>
 <body>
     <h2>Whaddup {{name}}</h2>
-    <a href="/add_book">Add Book and Review</a>
-    <h3>Recent Book Reviews:</h3>
     
-        {% for review in book_reviews %}
-            <div class = "recent_review">
-                <a href="/review/{{review.id}}">{{review.title}}</a>
-                <p>{{review.rating}}</p>
-            </div>
-        {% endfor %}
+    <div class="reviews">
+        <h3>Recent Book Reviews:</h3>
+        <a href="/add_book">Add Book and Review</a>
+        
+            {% for review in all_reviews %}
+
+                <div class = "recent_review">
+                    <p>Title:<a href="/review/{{review.id}}">{{review.title}}</a></p>
+                    <p>Author: {{review.author}}</p>
+                    <p>Rating: 
+                        {% for i in rating %}
+                            {% if i <= review.rating %}
+                                <img class ="star" src="{% static 'images/full.png' %}" alt="full">
+                            {% endif %}
+                            {% if i > review.rating %}
+                                <img class ="star" src="{% static 'images/blank.png' %}" alt="">
+                            {% endif %}
+                        {% endfor %}  
+                    </p>
+                    <p>Reviewer:
+                        {{review.book_reviewers.first.name}}
+                    </p>
+                </div>
+            {% endfor %}
+        
+    </div>
+    <div class="footer">
+        <a class ="red" href="/dump_books">Dump All Books and Reviews</a>
+        <a href="/logout">Logout</a>
+    </div>
 </body>
 </html>
