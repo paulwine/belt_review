@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^add_book$', views.add_book),
     url(r'^review/(?P<review_id>\d+)$', views.review),
     url(r'^process$', views.process),
+    url(r'^user_display$', views.user_display),
     url(r'^dump_books$', views.dump_books)
 
 ]

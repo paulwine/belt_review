@@ -11,7 +11,10 @@
 <body>
     <h1>Book Reviews</h1>
         <h2>{{title}}</h2>
+        <h4>By: {{author}}</h4>
         <p>{{review}}</p>
+        <p class = "reviewer" >Reviewer: <a href="/user_display">{{reviewer}}</a></p>
+        
         <p>Rating:
             {% for star in stars %}
                 <img class ="star" src="{% static '/images/full.png' %}" alt="full">

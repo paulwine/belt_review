@@ -94,9 +94,11 @@ def books(request):
     context = request.session["context"]
     all_users = User.objects.all()
     all_reviews = Review.objects.all()
+    three_reviews = Review.objects.all().order_by('-id')[:3:1]
     context["all_users"] = all_users
     context["all_reviews"] = all_reviews
     context["rating"] = [1, 2, 3, 4, 5] 
+    context["three_reviews"] = three_reviews
 
     return render(request, "books.html", context)
 
@@ -112,8 +114,13 @@ def logout(request):
 def review(request, review_id):
     book = Review.objects.filter(id = review_id)
     title = book[0].title
+    author = book[0].author
     review = book[0].review
     rating = book[0].rating
+    reviewer = book[0].book_reviewers.first().name
+    request.session["user_id"] = book[0].book_reviewers.first().id
+   
+    print reviewer
     neg_rating = 5 - rating
     stars = []
     blank_stars = []
@@ -126,7 +133,9 @@ def review(request, review_id):
         "title" : title,
         "review" : review,
         "rating" : rating,
+        "author" : author,
         "id" : review_id,
+        "reviewer" : reviewer,
         "stars" : stars,
         "blank_stars" : blank_stars
     }
@@ -145,6 +154,17 @@ def process(request):
     a = Review.objects.create(title=title, author=author, review=review, rating=rating)
     a.book_reviewers = cur_user
     return redirect("/books")
+
+def user_display(request):
+    user_id = request.session["user_id"]
+    active_user = User.objects.get(id=user_id)
+    name = active_user.name
+    reviews = Review.objects.filter(book_reviewers = active_user)
+    context = {
+        "name" : name,
+        "reviews" : reviews
+    }
+    return render(request, "user.html", context)
 
 def dump_books(request):
     Review.objects.all().delete()

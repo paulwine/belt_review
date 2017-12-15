@@ -18,3 +18,35 @@ h1{
 .footer{
     display: block;
 }
+.other_reviews{
+   
+    background: linear-gradient(lightslategray, lightskyblue);
+    width: 20%;
+    display: inline-block;
+    vertical-align: top;
+    
+    
+}
+.review_box{
+    overflow: scroll;
+    background: linear-gradient(lightslategray, lightskyblue);
+    height: 200px;
+    padding: 20px;
+}
+.title_list{
+    display: block;
+    text-decoration: none;
+
+}
+.reviewer{
+    font-size: 11px;
+}
+.logout{
+    background-color: lightblue;
+    display: inline-block;
+    border: 1px solid lightgreen;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 10px;
+    box-shadow: 2px 5px slategrey;
+}

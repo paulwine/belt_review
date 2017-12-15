@@ -9,6 +9,11 @@
     <title>User</title>
 </head>
 <body>
-    <h1>User Page</h1>
+    <h1>{{name}}</h1>
+    <h2>Reviews:</h2>
+    {% for review in reviews %}
+       <a class = "title_list" href="/review/{{review.id}}">{{review.title}}</a>
+    {% endfor %}
+    <a class = "logout" href="/logout">Logout</a>
 </body>
 </html>
