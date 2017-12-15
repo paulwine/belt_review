@@ -12,7 +12,17 @@
     <h1>{{name}}</h1>
     <h2>Reviews:</h2>
     {% for review in reviews %}
-       <a class = "title_list" href="/review/{{review.id}}">{{review.title}}</a>
+        <div class="user_review">
+            <a class = "title_list" href="/review/{{review.id}}">{{review.title}}</a>
+                    {% for i in rating %}
+                        {% if i <= review.rating %}
+                            <img class ="star" src="{% static 'images/full.png' %}" alt="full">
+                        {% endif %}
+                        {% if i > review.rating %}
+                            <img class ="star" src="{% static 'images/blank.png' %}" alt="">
+                        {% endif %}
+                    {% endfor %}
+        </div>  
     {% endfor %}
     <a class = "logout" href="/logout">Logout</a>
 </body>

@@ -160,9 +160,11 @@ def user_display(request):
     active_user = User.objects.get(id=user_id)
     name = active_user.name
     reviews = Review.objects.filter(book_reviewers = active_user)
+    
     context = {
         "name" : name,
-        "reviews" : reviews
+        "reviews" : reviews,
+        "rating" : [1, 2, 3, 4, 5] 
     }
     return render(request, "user.html", context)
 

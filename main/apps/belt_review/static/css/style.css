@@ -50,3 +50,10 @@ h1{
     margin-top: 10px;
     box-shadow: 2px 5px slategrey;
 }
+.user_review{
+    background: linear-gradient(lavender, lightpink);
+    border: 1px solid linen;
+    border-radius: 10px;
+    width: 20%;
+    padding: 15px; 
+}
